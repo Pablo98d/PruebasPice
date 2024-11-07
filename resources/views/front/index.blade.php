@@ -62,7 +62,7 @@ function verificar_sesion() {
             border-radius: 5px;
         }
 
-        /* Banner de imágenes */
+        /* Banner de ilustraciones */
         .banner {
             display: flex;
             overflow: hidden;
@@ -126,12 +126,37 @@ function verificar_sesion() {
         .welcome h2 {
             color: #007BFF;
             margin-bottom: 1em;
+            font-size: 32px;
         }
 
         .welcome p {
             color: #333333;
             font-size: 18px;
             margin-bottom: 1em;
+            line-height: 1.6;
+        }
+
+        /* Historia de los autos */
+        .history {
+            text-align: left;
+            background-color: #ffffff;
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            width: 80%;
+        }
+
+        .history h2 {
+            color: #007BFF;
+            margin-bottom: 1em;
+        }
+
+        .history p {
+            color: #333333;
+            font-size: 18px;
+            margin-bottom: 1em;
+            line-height: 1.6;
         }
 
         /* Pie de página */
@@ -146,12 +171,12 @@ function verificar_sesion() {
         }
     </style>
     <script>
-        // JavaScript para el carrusel de imágenes
+        // JavaScript para el carrusel de ilustraciones
         let currentImageIndex = 0;
         const images = [
-            'auto1.jpg', // Reemplaza con la URL o ruta de tu imagen
-            'auto2.jpg',
-            'auto3.jpg'
+            'ilustraciones/auto1.svg', // Ruta de la ilustración 1 (SVG)
+            'ilustraciones/auto2.svg', // Ruta de la ilustración 2 (SVG)
+            'ilustraciones/auto3.svg'  // Ruta de la ilustración 3 (SVG)
         ];
 
         function showNextImage() {
@@ -170,7 +195,7 @@ function verificar_sesion() {
     <!-- Barra de navegación -->
     <header>
         <div class="navbar">
-            <h1>Mi Aplicación</h1>
+            <h1>Mi Aplicación PHP</h1>
             <nav>
                 <ul>
                     <li><a href="index.php">Inicio</a></li>
@@ -186,9 +211,9 @@ function verificar_sesion() {
         </div>
     </header>
 
-    <!-- Banner de imágenes -->
+    <!-- Banner de ilustraciones -->
     <div class="banner">
-        <img id="banner-image" src="auto1.jpg" alt="Imagen de autos" />
+        <img id="banner-image" src="ilustraciones/auto1.svg" alt="Ilustración de autos" />
         <div class="banner-buttons">
             <button class="banner-button" onclick="showPreviousImage()">&#10094;</button>
             <button class="banner-button" onclick="showNextImage()">&#10095;</button>
@@ -197,17 +222,35 @@ function verificar_sesion() {
 
     <!-- Contenido principal -->
     <main>
+        <!-- Bienvenida -->
         <section class="welcome">
-            <h2>Bienvenido</h2>
-            <p>Hola .</p>
-            <p>.</p>
+            <h2>¡Bienvenido al Futuro del Automóvil!</h2>
+            <p>
+                En esta página, exploraremos la historia de los autos, desde los primeros modelos a vapor hasta los autos eléctricos que están transformando la industria.
+                Ya sea que te apasione la tecnología automotriz, los diseños clásicos o las innovaciones del futuro, ¡aquí tienes un lugar para disfrutar y aprender sobre los vehículos que han revolucionado el mundo!
+            </p>
+            <p>
+                ¿Te has preguntado cómo el automóvil ha cambiado nuestras vidas? Desde los vehículos de los primeros días hasta los autos autónomos de hoy, cada avance nos ha acercado un paso más a un futuro lleno de posibilidades.
+            </p>
+            <p>
+                ¡Sigue explorando nuestra historia, descubre ilustraciones de los autos más emblemáticos y aprende más sobre cómo estos increíbles vehículos han marcado el curso de la humanidad!
+            </p>
         </section>
-    </main>
 
-    <!-- Pie de página -->
-    <footer>
-        <p>&copy; <?php echo date("Y"); ?> Mi Aplicación PHP. Todos los derechos reservados.</p>
-    </footer>
-
-</body>
-</html>
+        <!-- Historia de los autos -->
+        <section class="history">
+            <h2>Historia de los Autos</h2>
+            <p>
+                Los automóviles tienen una larga y fascinante historia que se remonta a finales del siglo XIX. El primer vehículo de motor fue creado por Karl Benz en 1885, conocido como el Benz Patent-Motorwagen, considerado el primer automóvil práctico.
+            </p>
+            <p>
+                A principios del siglo XX, Henry Ford revolucionó la industria al introducir la producción en cadena, lo que permitió la fabricación masiva de autos, haciendo que el automóvil fuera más accesible para la clase media. Modelos icónicos como el Ford Modelo T marcaron esta era.
+            </p>
+            <p>
+                En las décadas siguientes, los autos fueron mejorando en términos de seguridad, comodidad y rendimiento. En los años 50 y 60, los automóviles se convirtieron en símbolos de status y estilo de vida. Marcas como Chevrolet, Cadillac, y Ford lideraron la industria en esta época, con modelos que definieron la cultura pop.
+            </p>
+            <p>
+                Con el avance de la tecnología, los autos modernos no solo han mejorado en diseño, sino también en eficiencia energética y sostenibilidad. Hoy en día, los autos eléctricos, como los fabricados por Tesla, están liderando el cambio hacia un futuro más ecológico.
+            </p>
+            <p>
+                La industria automotriz sigue evolucionando rápidamente con innovaciones como los autos
