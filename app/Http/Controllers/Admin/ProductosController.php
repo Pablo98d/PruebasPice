@@ -99,4 +99,6 @@ class ProductosController extends Controller
         // dd($p,$p->nombreCategoria());
         return view('admin.productos.prueba',compact('p'));
     }
+    // ProductController.php
+
 }

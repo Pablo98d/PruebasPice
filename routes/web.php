@@ -71,3 +71,4 @@ Route::get('/tweets', [ApiXController::class, 'showTweets']);
 
 Route::get('/pruebas', 
 [App\Http\Controllers\Admin\ProductosController::class, 'pruebas'])->name('pruebas');
+
