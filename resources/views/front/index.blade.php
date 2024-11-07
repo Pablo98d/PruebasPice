@@ -19,54 +19,69 @@
             position: relative;
             width: 800px;
             height: 600px;
-            background-color: #1e1e1e;
+            background-color: #111;
             border: 2px solid #fff;
             margin: 20px auto;
             overflow: hidden;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
         }
 
-        /* Estilos de la nave */
+        /* Estilos de la nave del jugador */
         #nave {
             position: absolute;
             width: 50px;
             height: 50px;
-            background-image: url('https://via.placeholder.com/50x50/0078D7/ffffff?text=Nave');
-            background-size: cover;
+            background-color: #0078D7;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            box-shadow: 0 0 10px #00f, 0 0 20px #00f;
+            border: 2px solid #00f;
             top: 80%;
             left: 50%;
             transform: translateX(-50%);
         }
 
-        /* Estilos de disparo */
+        /* Estilos de disparo de la nave */
         .disparo {
             position: absolute;
-            width: 5px;
+            width: 4px;
             height: 20px;
-            background-color: #ff0000;
+            background-color: #ff3b3b;
+            box-shadow: 0 0 10px #f00, 0 0 20px #f00;
             border-radius: 2px;
         }
 
         /* Disparo del enemigo */
         .disparo-enemigo {
             background-color: #00ff00;
+            box-shadow: 0 0 10px #0f0, 0 0 20px #0f0;
         }
 
         /* Estilos de enemigo */
         .enemigo {
             position: absolute;
-            width: 50px;
-            height: 50px;
-            background-image: url('https://via.placeholder.com/50x50/ff0000/ffffff?text=Enemigo');
-            background-size: cover;
+            width: 40px;
+            height: 40px;
+            background-color: #ff0000;
+            clip-path: polygon(50% 0%, 0% 100%, 20% 80%, 80% 80%, 100% 100%);
+            box-shadow: 0 0 10px #f00, 0 0 20px #f00;
+            border: 2px solid #f00;
         }
 
-        /* Vidas */
-        #vidas {
+        /* Vidas y puntos */
+        #vidas, #puntos {
             position: absolute;
-            top: 10px;
-            left: 10px;
             font-size: 20px;
             color: white;
+        }
+
+        #vidas {
+            top: 10px;
+            left: 10px;
+        }
+
+        #puntos {
+            top: 10px;
+            right: 10px;
         }
     </style>
 </head>
@@ -74,6 +89,7 @@
 
     <div id="gameArea">
         <div id="vidas">Vidas: <span id="vidasCount">3</span></div>
+        <div id="puntos">Puntos: <span id="puntosCount">0</span></div>
         <div id="nave"></div>
     </div>
 
@@ -82,10 +98,13 @@
         const gameArea = document.getElementById('gameArea');
         const nave = document.getElementById('nave');
         const vidasDisplay = document.getElementById('vidasCount');
+        const puntosDisplay = document.getElementById('puntosCount');
         const speed = 10;
         const shootSpeed = 5;
-        const enemySpeed = 3;
-        const enemyShootSpeed = 3;
+        let enemySpeed = 3;
+        let enemyShootSpeed = 3;
+        let enemySpawnInterval = 2000;
+        let puntos = 0;
         let vidas = 3;
         let naveX = gameArea.offsetWidth / 2 - nave.offsetWidth / 2;
         let naveY = gameArea.offsetHeight - nave.offsetHeight - 20;
@@ -109,7 +128,7 @@
         function createDisparo() {
             const disparo = document.createElement('div');
             disparo.classList.add('disparo');
-            disparo.style.left = naveX + nave.offsetWidth / 2 - 2.5 + 'px';
+            disparo.style.left = naveX + nave.offsetWidth / 2 - 2 + 'px';
             disparo.style.top = naveY + 'px';
             gameArea.appendChild(disparo);
 
@@ -124,6 +143,7 @@
                         disparo.remove();
                         enemigo.remove();
                         clearInterval(interval);
+                        increasePoints();
                     }
                 });
             }, 10);
@@ -133,7 +153,7 @@
         function createEnemyDisparo(enemigo) {
             const disparo = document.createElement('div');
             disparo.classList.add('disparo', 'disparo-enemigo');
-            disparo.style.left = enemigo.offsetLeft + enemigo.offsetWidth / 2 - 2.5 + 'px';
+            disparo.style.left = enemigo.offsetLeft + enemigo.offsetWidth / 2 - 2 + 'px';
             disparo.style.top = enemigo.offsetTop + enemigo.offsetHeight + 'px';
             gameArea.appendChild(disparo);
 
@@ -202,6 +222,23 @@
             }
         }
 
+        // Incrementar puntos y aumentar dificultad
+        function increasePoints() {
+            puntos += 10;
+            puntosDisplay.textContent = puntos;
+
+            // Incrementa la dificultad cada 50 puntos
+            if (puntos % 50 === 0) {
+                enemySpeed += 1;              // Aumenta la velocidad de los enemigos
+                enemyShootSpeed += 1;         // Aumenta la velocidad de los disparos de enemigos
+                enemySpawnInterval -= 200;    // Reduce el intervalo de aparición de enemigos
+
+                // Reinicia el intervalo de aparición de enemigos
+                clearInterval(enemySpawnTimer);
+                enemySpawnTimer = setInterval(createEnemigo, enemySpawnInterval);
+            }
+        }
+
         // Manejar teclas de movimiento y disparo
         document.addEventListener('keydown', (event) => {
             switch(event.key) {
@@ -224,7 +261,7 @@
         });
 
         // Generar enemigos cada cierto tiempo
-        setInterval(createEnemigo, 2000);
+        let enemySpawnTimer = setInterval(createEnemigo, enemySpawnInterval);
     </script>
 </body>
 </html>
