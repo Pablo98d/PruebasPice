@@ -4,31 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Index</title>
+    <title>K</title>
+   
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Index</h1>
-    <!-- <blockquote class="twitter-tweet"><p lang="es" dir="ltr">Te invitamos a visitar nuestro sitio web COST para acceder a información valiosa sobre costos, presupuestos y más. Aquí compartimos nuestro compromiso con la integridad en la construcción.🏗<br><br>👉<a href="https://t.co/hnMSUtJYMU">https://t.co/hnMSUtJYMU</a> <a href="https://t.co/CtNmgaxlwy">pic.twitter.com/CtNmgaxlwy</a></p>&mdash; CoST Jalisco (@CostJalisco) <a href="https://twitter.com/CostJalisco/status/1758884010594537598?ref_src=twsrc%5Etfw">February 17, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
-    
+    <h1>K</h1>
 
-        - honeycomb = [5, 6, 7, 8, 9, 8, 7, 6, 5];
-- icons = ['🚀', '🎸', '🤖', '🫶', '🔥', '🕹️', '👾', '✨', '🌴', '🖥️', '💻', '⌨️', '💡', '🕶️', '⚙️', '🍒', '🧙‍♂️', '🎮', '👽', '🌌', '🎧', '🌒', '🌓', '🌔', '🎵', '🎶', '❤️', '🎙️', '📸', '🕰️', '🚀', '🎸', '🤖', '🫶', '🔥', '🕹️', '👾', '✨', '🌴', '🖥️', '💻', '⌨️', '💡', '🕶️', '⚙️', '🍒', '🦄', '📱', '🖨️', '📡', '🔬', '🔭', '🎚️', '🎛️', '🧬', '🔮', '🧲', '🛸', '🪐', '🌠', '👓'];
-
-#container.container
-  - iconIndex = -1;
-  each column, index in honeycomb
-    .column(style='--column: ' + index)
-      - cellIndex = 0;
-      while cellIndex < column
-        - iconIndex++;
-        - cellIndex++;
-
-        .hexagon(
-          style='--index: ' + cellIndex + "; --icon: '" + icons[iconIndex] + "';"
-        )
-
-#switch.switch
-
+    <div class="login-wrap">
+        <div class="login-html">
+            <input id="tab-1" type="radio" name="tab" class="sign-in" checked>
+            <label for="tab-1" class="tab">Sign In</label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up">
+            <label for="tab-2" class="tab">Sign Up</label>
+            <div class="login-form">
+                
+                <!-- Sign In Form -->
+                <div class="sign-in-htm">
+                    <div class="group">
+                        <label for="user-signin" class="label">Username</label>
+                        <input id="user-signin" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <label for="pass-signin" class="label">Password</label>
+                        <input id="pass-signin" type="password" class="input">
+                    </div>
+                    <div class="group">
+                        <input id="check-signin" type="checkbox" class="check" checked>
+                        <label for="check-signin"><span class="icon"></span> Keep me Signed in</label>
+                    </div>
+                    <div class="group">
+                        <input type="submit" class="button" value="Sign In">
+                    </div>
+                    <div class="hr"></div>
+                    <div class="foot-lnk">
+                        <a href="#forgot">Forgot Password?</a>
+                    </div>
+                </div>
+                
+                <!-- Sign Up Form -->
+                <div class="sign-up-htm">
+                    <div class="group">
+                        <label for="user-signup" class="label">Username</label>
+                        <input id="user-signup" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <label for="pass-signup" class="label">Password</label>
+                        <input id="pass-signup" type="password" class="input">
+                    </div>
+                    <div class="group">
+                        <label for="repeat-pass" class="label">Repeat Password</label>
+                        <input id="repeat-pass" type="password" class="input">
+                    </div>
+                    <div class="group">
+                        <label for="email-signup" class="label">Email Address</label>
+                        <input id="email-signup" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <input type="submit" class="button" value="Sign Up">
+                    </div>
+                    <div class="hr"></div>
+                    <div class="foot-lnk">
+                        <label for="tab-1">Already Member?</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
