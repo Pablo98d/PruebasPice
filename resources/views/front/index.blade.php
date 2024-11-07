@@ -8,7 +8,27 @@
 </head>
 <body>
     <h1>Index</h1>
-    <blockquote class="twitter-tweet"><p lang="es" dir="ltr">Te invitamos a visitar nuestro sitio web COST para acceder a información valiosa sobre costos, presupuestos y más. Aquí compartimos nuestro compromiso con la integridad en la construcción.🏗<br><br>👉<a href="https://t.co/hnMSUtJYMU">https://t.co/hnMSUtJYMU</a> <a href="https://t.co/CtNmgaxlwy">pic.twitter.com/CtNmgaxlwy</a></p>&mdash; CoST Jalisco (@CostJalisco) <a href="https://twitter.com/CostJalisco/status/1758884010594537598?ref_src=twsrc%5Etfw">February 17, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <!-- <blockquote class="twitter-tweet"><p lang="es" dir="ltr">Te invitamos a visitar nuestro sitio web COST para acceder a información valiosa sobre costos, presupuestos y más. Aquí compartimos nuestro compromiso con la integridad en la construcción.🏗<br><br>👉<a href="https://t.co/hnMSUtJYMU">https://t.co/hnMSUtJYMU</a> <a href="https://t.co/CtNmgaxlwy">pic.twitter.com/CtNmgaxlwy</a></p>&mdash; CoST Jalisco (@CostJalisco) <a href="https://twitter.com/CostJalisco/status/1758884010594537598?ref_src=twsrc%5Etfw">February 17, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
     
+
+        - honeycomb = [5, 6, 7, 8, 9, 8, 7, 6, 5];
+- icons = ['🚀', '🎸', '🤖', '🫶', '🔥', '🕹️', '👾', '✨', '🌴', '🖥️', '💻', '⌨️', '💡', '🕶️', '⚙️', '🍒', '🧙‍♂️', '🎮', '👽', '🌌', '🎧', '🌒', '🌓', '🌔', '🎵', '🎶', '❤️', '🎙️', '📸', '🕰️', '🚀', '🎸', '🤖', '🫶', '🔥', '🕹️', '👾', '✨', '🌴', '🖥️', '💻', '⌨️', '💡', '🕶️', '⚙️', '🍒', '🦄', '📱', '🖨️', '📡', '🔬', '🔭', '🎚️', '🎛️', '🧬', '🔮', '🧲', '🛸', '🪐', '🌠', '👓'];
+
+#container.container
+  - iconIndex = -1;
+  each column, index in honeycomb
+    .column(style='--column: ' + index)
+      - cellIndex = 0;
+      while cellIndex < column
+        - iconIndex++;
+        - cellIndex++;
+
+        .hexagon(
+          style='--index: ' + cellIndex + "; --icon: '" + icons[iconIndex] + "';"
+        )
+
+#switch.switch
+
+
 </body>
 </html>
