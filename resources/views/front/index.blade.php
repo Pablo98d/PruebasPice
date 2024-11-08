@@ -1,256 +1,472 @@
-<?php
-// Iniciar la sesión
-session_start();
-
-// Función para verificar si el usuario ha iniciado sesión
-function verificar_sesion() {
-    if (!isset($_SESSION['user_id'])) {
-        header("Location: login.php"); // Redirige al inicio de sesión si no está autenticado
-        exit();
-    }
-}
-?>
-
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Inicio</title>
-    <style>
-        /* Estilos generales */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        /* Barra de navegación */
-        .navbar {
-            background-color: #007BFF; /* Color de fondo */
-            padding: 1em;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .navbar h1 {
-            color: #ffffff;
-            font-size: 24px;
-        }
-
-        .navbar nav ul {
-            list-style-type: none;
-            display: flex;
-        }
-
-        .navbar nav ul li {
-            margin-left: 1em;
-        }
-
-        .navbar nav ul li a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 18px;
-            padding: 0.5em 1em;
-            transition: background-color 0.3s;
-        }
-
-        .navbar nav ul li a:hover {
-            background-color: #0056b3;
-            border-radius: 5px;
-        }
-
-        /* Banner de ilustraciones */
-        .banner {
-            display: flex;
-            overflow: hidden;
-            width: 100%;
-            height: 300px;
-            position: relative;
-        }
-
-        .banner img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        /* Botones de navegación del banner */
-        .banner-buttons {
-            position: absolute;
-            width: 100%;
-            top: 50%;
-            display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
-        }
-
-        .banner-button {
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 0.5em;
-            font-size: 1.5em;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .banner-button:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        /* Contenido principal */
-        main {
-            padding: 2em;
-            background-color: #f4f4f4;
-            min-height: 80vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        .welcome {
-            text-align: center;
-            background-color: #ffffff;
-            padding: 2em;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-            width: 80%;
-        }
-
-        .welcome h2 {
-            color: #007BFF;
-            margin-bottom: 1em;
-            font-size: 32px;
-        }
-
-        .welcome p {
-            color: #333333;
-            font-size: 18px;
-            margin-bottom: 1em;
-            line-height: 1.6;
-        }
-
-        /* Historia de los autos */
-        .history {
-            text-align: left;
-            background-color: #ffffff;
-            padding: 2em;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-            width: 80%;
-        }
-
-        .history h2 {
-            color: #007BFF;
-            margin-bottom: 1em;
-        }
-
-        .history p {
-            color: #333333;
-            font-size: 18px;
-            margin-bottom: 1em;
-            line-height: 1.6;
-        }
-
-        /* Pie de página */
-        footer {
-            background-color: #007BFF;
-            color: #ffffff;
-            text-align: center;
-            padding: 1em;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
-    <script>
-        // JavaScript para el carrusel de ilustraciones
-        let currentImageIndex = 0;
-        const images = [
-            'ilustraciones/auto1.svg', // Ruta de la ilustración 1 (SVG)
-            'ilustraciones/auto2.svg', // Ruta de la ilustración 2 (SVG)
-            'ilustraciones/auto3.svg'  // Ruta de la ilustración 3 (SVG)
-        ];
-
-        function showNextImage() {
-            currentImageIndex = (currentImageIndex + 1) % images.length;
-            document.getElementById("banner-image").src = images[currentImageIndex];
-        }
-
-        function showPreviousImage() {
-            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-            document.getElementById("banner-image").src = images[currentImageIndex];
-        }
-    </script>
-</head>
-<body>
-
-    <!-- Barra de navegación -->
-    <header>
-        <div class="navbar">
-            <h1>Mi Aplicación PHP</h1>
-            <nav>
-                <ul>
-                    <li><a href="index.php">Inicio</a></li>
-                    <?php if (isset($_SESSION['user_id'])): ?>
-                        <li><a href="perfil.php">Perfil</a></li>
-                        <li><a href="logout.php">Cerrar Sesión</a></li>
-                    <?php else: ?>
-                        <li><a href="login.php">Iniciar Sesión</a></li>
-                        <li><a href="registro.php">Registrarse</a></li>
-                    <?php endif; ?>
-                </ul>
+<html lang="en">
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>cs</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <!-- style css -->
+      <link rel="stylesheet" href="css/style.css">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="css/responsive.css">
+      <!-- fevicon -->
+      <link rel="icon" href="images/fevicon.png" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+   </head>
+   <!-- body -->
+   <body class="main-layout">
+      <!-- loader  -->
+      <div class="loader_bg">
+         <div class="loader"><img src="images/loading.gif" alt="#" /></div>
+      </div>
+      <div class="wrapper">
+         <!-- end loader -->
+         <div class="sidebar">
+            <!-- Sidebar  -->
+            <nav id="sidebar">
+               <div id="dismiss">
+                  <i class="fa fa-arrow-left"></i>
+               </div>
+               <ul class="list-unstyled components">
+                  <li class="active">
+                     <a href="index.html">Home</a>
+                  </li>
+                  <li>
+                     <a href="#about">About</a>
+                  </li>
+                  <li>
+                     <a href="#game">Game</a>
+                  </li>
+                  <li>
+                     <a href="#customer">Our customer</a>
+                  </li>
+                  <li>
+                     <a href="#contact">Conatct</a>
+                  </li>
+               </ul>
             </nav>
-        </div>
-    </header>
+         </div>
+         <div id="content">
+            <!-- header -->
+            <header>
+               <!-- header inner -->
+               <div class="head_top">
+                  <div class="header">
+                     <div class="container-fluid">
+                        <div class="row">
+                           <div class="col-md-3 logo_section">
+                              <div class="full">
+                                 <div class="center-desk">
+                                    <div class="logo">
+                                       <a href="index.html"><img src="images/logo.png" alt="#"></a>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-9">
+                              <div class="right_header_info">
+                                 <ul>
+                                    <li class="menu_iconb">
+                                       <a href="Javascript:void(0)">Login</a>
+                                    </li>
+                                    <li>
+                                       <button type="button" id="sidebarCollapse">
+                                       <img src="images/menu_icon.png" alt="#" />
+                                       </button>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </header>
+            <!-- end header inner -->
+            <!-- end header -->
+            <section class="slider_section">
+               <div class="banner_main">
+                  <img src="images/bg_main.jpg" alt="#"/>
+                  <div class="container-fluid padding3">
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="text-bg">
+                              <a href="Javascript:void(0)">Play now</a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </section>
+         <!-- Categories -->
+         <!-- casino -->
+         <div id="game" class="casino">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="titlepage">
+                        <h2>Our Casino Games</h2>
+                        <span></span>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-4 padding_bottom">
+                     <div class="game_box">
+                        <figure><img src="images/game1.jpg" alt="#"/></figure>
+                     </div>
+                     <div class="game">
+                        <h3>Game 1</h3>
+                     </div>
+                  </div>
+                  <div class="col-md-4 padding_bottom">
+                     <div class="game_box">
+                        <figure><img src="images/game2.jpg" alt="#"/></figure>
+                     </div>
+                     <div class="game">
+                        <h3>Game 2</h3>
+                     </div>
+                  </div>
+                  <div class="col-md-4 padding_bottom">
+                     <div class="game_box">
+                        <figure><img src="images/game3.jpg" alt="#"/></figure>
+                     </div>
+                     <div class="game">
+                        <h3>Game 3</h3>
+                     </div>
+                  </div>
+                  <div class="col-md-4 margin_bottom1">
+                     <div class="game_box">
+                        <figure><img src="images/game4.jpg" alt="#"/></figure>
+                     </div>
+                     <div class="game">
+                        <h3>Game 4</h3>
+                     </div>
+                  </div>
+                  <div class="col-md-4 margin_bottom1">
+                     <div class="game_box">
+                        <figure><img src="images/game5.jpg" alt="#"/></figure>
+                     </div>
+                     <div class="game">
+                        <h3>Game 5</h3>
+                     </div>
+                  </div>
+                  <div class="col-md-4">
+                     <div class="game_box">
+                        <figure><img src="images/game6.jpg" alt="#"/></figure>
+                     </div>
+                     <div class="game">
+                        <h3>Game 6</h3>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- end casino -->
+         <!-- licens -->
+         <div class="licens">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="titlepage">
+                        <h2>Licensing & Reglation</h2>
+                        <span></span>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-12">
+                     <div id="licens" class="carousel slide licens_Carousel " data-ride="carousel">
+                        <ol class="carousel-indicators">
+                           <li data-target="#licens" data-slide-to="0" class="active"></li>
+                           <li data-target="#licens" data-slide-to="1"></li>
+                           <li data-target="#licens" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                           <div class="carousel-item active">
+                              <div class="container">
+                                 <div class="carousel-caption ">
+                                    <div class="row d_flex">
+                                       <div  class="col-md-6">
+                                          <div class="test_box">
+                                             <div class="jons">
+                                                <h4>Promotins</h4>
+                                             </div>
+                                             <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                                             <a class="read_more" href="Javascript:void(0)">Play Online</a>
+                                          </div>
+                                       </div>
+                                       <div  class="col-md-6">
+                                          <div class="test_box">
+                                             <div class="jons">
+                                                <figure><img src="images/jons_img1.png" alt="#"/></figure>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="carousel-item">
+                              <div class="container">
+                                 <div class="carousel-caption">
+                                    <div class="row d_flex">
+                                       <div  class="col-md-6">
+                                          <div class="test_box">
+                                             <div class="jons">
+                                                <h4>Promotins</h4>
+                                             </div>
+                                             <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                                             <a class="read_more" href="Javascript:void(0)">Play Online</a>
+                                          </div>
+                                       </div>
+                                       <div  class="col-md-6">
+                                          <div class="test_box">
+                                             <div class="jons">
+                                                <figure><img src="images/jons_img1.png" alt="#"/></figure>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="carousel-item">
+                              <div class="container">
+                                 <div class="carousel-caption">
+                                    <div class="row d_flex">
+                                       <div  class="col-md-6">
+                                          <div class="test_box">
+                                             <div class="jons">
+                                                <h4>Promotins</h4>
+                                             </div>
+                                             <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                                             <a class="read_more" href="Javascript:void(0)">Play Online</a>
+                                          </div>
+                                       </div>
+                                       <div  class="col-md-6">
+                                          <div class="test_box">
+                                             <div class="jons">
+                                                <figure><img src="images/jons_img1.png" alt="#"/></figure>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#licens" role="button" data-slide="prev">
+                        <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                        </a>
+                        <a class="carousel-control-next" href="#licens" role="button" data-slide="next">
+                        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                        </a>
+                     </div>
+                     <p class="lorem">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                  </div>
+                  <div id="about" class="col-md-12">
+                     <ul class="spinit">
+                        <li><a href="Javascript:void(0)">About spinit</a></li>
+                        <li><a href="Javascript:void(0)">our promotions</a></li>
+                        <li><a href="Javascript:void(0)">over 1000games</a></li>
+                        <li><a href="Javascript:void(0)">our mobile app</a></li>
+                     </ul>
+                     <div class="two_box">
+                        <div class="row d_flex">
+                           <div class="col-md-4">
+                              <div class="many_box_img">
+                                 <figure><img src="images/imag.jpg" alt="#"/></figure>
+                              </div>
+                           </div>
+                           <div class="col-md-8">
+                              <div class="many_box">
+                                 <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.There are many variati<br>
+                                    ons of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
+                                 </p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- end lLicens -->
+         <!-- customer -->
+         <div id="customer"  class="customer">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="titlepage">
+                        <h2>What Says Our customer</h2>
+                        <span></span>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-10 offset-md-1">
+                     <div class="customer_text">
+                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                        <div class="customer_box">
+                           <i><img src="images/customer.png" alt="#"/></i>
+                           <h4>Mark jo</h4>
+                           <span>jected humour</span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- end customer -->
+         <!-- reqeste -->
+         <div id="contact" class="reqeste">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="titlepage">
+                        <h2>Reqeste A call back</h2>
+                        <span></span>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-6 offset-md-3">
+                     <form id="cochang" class="form_main">
+                        <div class="row">
+                           <div class="col-md-12">
+                              <input class="form_control" placeholder="Name" type="text" name="Name">
+                           </div>
+                           <div class="col-md-12">
+                              <input class="form_control" placeholder="Phone number" type="text" name="Phone number">
+                           </div>
+                           <div class="col-md-12">
+                              <input class="form_control" placeholder="Email" type="text" name="Email">
+                           </div>
+                           <div class="col-md-12">
+                              <input class="form_control" placeholder="Message" type="text" name="Message">
+                           </div>
+                           <div class="col-md-12">
+                              <button class="send_btn">Send</button>
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- end reqeste -->
+         <!--  footer -->
+         <footer>
+            <div class="footer">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 ">
+                        <div class="address">
+                           <h3>Subscribe Now</h3>
+                           <form class="newtetter">
+                              <button class="submit">submit</button>
+                              <input class="tetter" placeholder="Enter your email" type="text" name="Enter your email">
+                           </form>
+                        </div>
+                     </div>
+                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                        <div class="row">
+                           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                              <div class="address">
+                                 <h3>Links</h3>
+                                 <ul class="Menu_footer">
+                                    <li class="active"> <a href="index.html">Home</a> </li>
+                                    <li><a href="#about">About</a> </li>
+                                    <li><a href="#game">Game</a> </li>
+                                    <li><a href="#customer">customer</a> </li>
+                                    <li><a href="#conatct">Conatct</a></li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                              <div class="address">
+                                 <h3>Contact us</h3>
+                                 <ul class="Links_footer">
+                                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="copyright">
+                  <div class="container">
+                     <p>Copyright 2019 All Right Reserved By <a href="https://html.design/">Free html Templates</a></p>
+                  </div>
+               </div>
+            </div>
+         </footer>
+         <!-- end footer -->
+      </div>
+      <div class="overlay"></div>
+      <!-- Javascript files-->
+      <script src="js/jquery.min.js"></script>
+      <script src="js/popper.min.js"></script>
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <script src="js/jquery-3.0.0.min.js"></script>
+      <!-- sidebar -->
+      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+       <script src="js/custom.js"></script>
+      <script type="text/javascript">
+         $(document).ready(function() {
+             $("#sidebar").mCustomScrollbar({
+                 theme: "minimal"
+             });
+         
+             $('#dismiss, .overlay').on('click', function() {
+                 $('#sidebar').removeClass('active');
+                 $('.overlay').removeClass('active');
+             });
+         
+             $('#sidebarCollapse').on('click', function() {
+                 $('#sidebar').addClass('active');
+                 $('.overlay').addClass('active');
+                 $('.collapse.in').toggleClass('in');
+                 $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+             });
+         });
+      </script>
+      <script>
+         $(document).ready(function() {
+             $(".fancybox").fancybox({
+                 openEffect: "none",
+                 closeEffect: "none"
+             });
+         
+             $(".zoom").hover(function() {
+         
+                 $(this).addClass('transition');
+             }, function() {
+         
+                 $(this).removeClass('transition');
+             });
+         });
+      </script>
+     
+   </body>
+</html>
 
-    <!-- Banner de ilustraciones -->
-    <div class="banner">
-        <img id="banner-image" src="ilustraciones/auto1.svg" alt="Ilustración de autos" />
-        <div class="banner-buttons">
-            <button class="banner-button" onclick="showPreviousImage()">&#10094;</button>
-            <button class="banner-button" onclick="showNextImage()">&#10095;</button>
-        </div>
-    </div>
-
-    <!-- Contenido principal -->
-    <main>
-        <!-- Bienvenida -->
-        <section class="welcome">
-            <h2>¡Bienvenido al Futuro del Automóvil!</h2>
-            <p>
-                En esta página, exploraremos la historia de los autos, desde los primeros modelos a vapor hasta los autos eléctricos que están transformando la industria.
-                Ya sea que te apasione la tecnología automotriz, los diseños clásicos o las innovaciones del futuro, ¡aquí tienes un lugar para disfrutar y aprender sobre los vehículos que han revolucionado el mundo!
-            </p>
-            <p>
-                ¿Te has preguntado cómo el automóvil ha cambiado nuestras vidas? Desde los vehículos de los primeros días hasta los autos autónomos de hoy, cada avance nos ha acercado un paso más a un futuro lleno de posibilidades.
-            </p>
-            <p>
-                ¡Sigue explorando nuestra historia, descubre ilustraciones de los autos más emblemáticos y aprende más sobre cómo estos increíbles vehículos han marcado el curso de la humanidad!
-            </p>
-        </section>
-
-        <!-- Historia de los autos -->
-        <section class="history">
-            <h2>Historia de los Autos</h2>
-            <p>
-                Los automóviles tienen una larga y fascinante historia que se remonta a finales del siglo XIX. El primer vehículo de motor fue creado por Karl Benz en 1885, conocido como el Benz Patent-Motorwagen, considerado el primer automóvil práctico.
-            </p>
-            <p>
-                A principios del siglo XX, Henry Ford revolucionó la industria al introducir la producción en cadena, lo que permitió la fabricación masiva de autos, haciendo que el automóvil fuera más accesible para la clase media. Modelos icónicos como el Ford Modelo T marcaron esta era.
-            </p>
-            <p>
-                En las décadas siguientes, los autos fueron mejorando en términos de seguridad, comodidad y rendimiento. En los años 50 y 60, los automóviles se convirtieron en símbolos de status y estilo de vida. Marcas como Chevrolet, Cadillac, y Ford lideraron la industria en esta época, con modelos que definieron la cultura pop.
-            </p>
-            <p>
-                Con el avance de la tecnología, los autos modernos no solo han mejorado en diseño, sino también en eficiencia energética y sostenibilidad. Hoy en día, los autos eléctricos, como los fabricados por Tesla, están liderando el cambio hacia un futuro más ecológico.
-            </p>
-            <p>
-                La industria automotriz sigue evolucionando rápidamente con innovaciones como los autos
