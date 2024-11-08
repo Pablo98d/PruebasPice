@@ -1,57 +1,113 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda de Ropa</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
 <body>
-    <header>
-        <h1>Bienvenidos a la Tienda de Ropa</h1>
-    </header>
+  <div id="tsparticles"></div>
 
-    <main>
-        <section class="productos">
-            <?php
-            // Datos de productos (en un caso real, estos datos vendrían de una base de datos)
-            $productos = [
-                [
-                    "nombre" => "Camisa Casual",
-                    "precio" => 19.99,
-                    "descripcion" => "Una camisa casual perfecta para cualquier ocasión.",
-                    "imagen" => "camisa.jpg"
-                ],
-                [
-                    "nombre" => "Pantalón de Jean",
-                    "precio" => 29.99,
-                    "descripcion" => "Pantalón de jean resistente y moderno.",
-                    "imagen" => "pantalon.jpg"
-                ],
-                [
-                    "nombre" => "Vestido de Verano",
-                    "precio" => 24.99,
-                    "descripcion" => "Vestido ligero ideal para el verano.",
-                    "imagen" => "vestido.jpg"
-                ]
-            ];
+  <!-- Incluir el archivo CSS -->
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-            // Generar HTML para cada producto
-            foreach ($productos as $producto) {
-                echo "<div class='producto'>";
-                echo "<img src='{$producto['imagen']}' alt='{$producto['nombre']}'>";
-                echo "<h2>{$producto['nombre']}</h2>";
-                echo "<p>{$producto['descripcion']}</p>";
-                echo "<p class='precio'>$ {$producto['precio']}</p>";
-                echo "<button>Agregar al carrito</button>";
-                echo "</div>";
-            }
-            ?>
-        </section>
-    </main>
+  <!-- Incluir el archivo JS -->
+  <script src="{{ asset('js/script.js') }}"></script>
 
-    <footer>
-        <p>&copy; 2024 Tienda de Ropa. Todos los derechos reservados.</p>
-    </footer>
+  <section>
+    <div class="content">
+      <h1>Conocer el World</h1>
+      <p>
+        OViajar nos hace crecer, nos hace aprender. Viajando tumbamos prejuicios e ideas preconcebidas que tenemos de lugares, de pueblos. Descubrimos infinidad de cosas y nuestros puntos de vista cambian para mejor.
+      </p>
+      <button>Explore Tours</button>
+    </div>
+
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/49db1b5f-09f6-4433-be57-51687585600c" />
+          <div class="cost">from $230 per group</div>
+          <div class="overlay">
+            <h1>Walking Tour in Florence</h1>
+            <p>
+              Discover the fascinating beauty of this historic city by
+              strolling through the rich cultural tapestry that makes Florence
+              a timeless destination.
+            </p>
+            <div class="ratings">
+              <div class="stars">
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star-half-outline"></ion-icon>
+              </div>
+              <span>138 reviews</span>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/2d165721-fe2e-4cf0-a63e-20bc5bc3f847" />
+          <div class="cost">from $380 per group</div>
+          <div class="overlay">
+            <h1>Edinburgh Guided Tour</h1>
+            <p>
+              Explore the city's majestic castles and fascinating history by
+              joining our guided tour for an unforgettable journey through
+              Scotland's capital.
+            </p>
+            <div class="ratings">
+              <div class="stars">
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon>
+              </div>
+              <span>307 reviews</span>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/d311d1de-7382-4c03-b083-5f7e88458158" />
+          <div class="cost dark-text">from $99 per adult</div>
+          <div class="overlay">
+            <h1>New York Sightseeing Tour</h1>
+            <p>
+              Experience the energy and excitement of New York City from Times
+              Square's dazzling lights to the serene beauty of Central Park.
+            </p>
+            <div class="ratings">
+              <div class="stars">
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star-half-outline"></ion-icon>
+              </div>
+              <span>1152 reviews</span>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/be223a30-52d1-4a0b-8d57-2e52f02e2245" />
+          <div class="cost dark-text">from $117 per adult</div>
+          <div class="overlay">
+            <h1>Japan Panoramic Tours</h1>
+            <p>
+              Embark on a magical journey through Tokyo by discovering the
+              beauty of the city as cherry blossom trees paint the streets in
+              hues of pink.
+            </p>
+            <div class="ratings">
+              <div class="stars">
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star"></ion-icon>
+                <ion-icon class="star" name="star-outline"></ion-icon>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  
+  </section>
 </body>
-</html>
